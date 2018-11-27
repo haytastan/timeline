@@ -1,0 +1,25 @@
+.avatar {
+    width: 230px;
+    height: 230px;
+    border-radius: 8px;
+}
+
+.event-avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+}
+
+.content-div {
+    padding-bottom: 6px;
+}
+
+.avatar-aligment {
+    padding-right: 5px;
+}
+
+.navbar{
+    margin-top: 6px;
+}
+
+
