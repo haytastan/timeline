@@ -1,6 +1,6 @@
 {
-  "homepage": "http://ebrugulec.com/github-user-timeline",
-  "name": "github-user-timeline",
+  "homepage": "http://ebrugulec.com/timeline",
+  "name": "timeline",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
