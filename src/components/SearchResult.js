@@ -5,8 +5,8 @@ import styles from './styles.module.css'
 const GITHUB_URL = "http://www.github.com/"
 class SearcResult extends Component {
     handleLoadButton = () => {
-        let page = this.props.page
-        page = page +1
+        let page = this.props.page;
+        page++;
         this.props.handlePage(page)
     }
     checkeventType = (event) => {

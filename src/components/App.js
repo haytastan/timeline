@@ -13,7 +13,8 @@ class App extends React.Component {
     this.state = {
       events: '',
       user: '',
-      page: 1
+      page: 1,
+      err: ''
     };
   }
 
@@ -35,7 +36,9 @@ class App extends React.Component {
     .then(res => {
       let events = res.data;
       let event_l = [...this.state.events, events]
-      this.setState({events: event_l})
+      this.setState({events: event_l, err: ''})
+    }).catch(err => {
+      this.setState({err: 'User not found!', events: '', user: ''})
     })
   }
 
@@ -44,9 +47,10 @@ class App extends React.Component {
     this.setState({page: page})
     this.getEvents(this.state.user.login)
   }
-    render() {
+  render() {
       const events = this.state.events
       const user = this.state.user
+      const err = this.state.err
       return (
         <div className="App">
           <nav>
@@ -60,7 +64,7 @@ class App extends React.Component {
                 <SearchBar handleSubmit={this.handleSubmit} />
               <div className="row">
               {
-                events && events.map((event, i) => {
+                events && !err && events.map((event, i) => {
                   return(
                     <SearchResult events={event} page={this.state.page} username={this.state.user} />
                   )
@@ -70,6 +74,12 @@ class App extends React.Component {
                 events &&
                 <button className="waves-effect waves-light btn red lighten-2" onClick={() => {this.handleLoadButton()}}><i className="material-icons right">cloud</i>Load...</button>
               }
+              {
+                err &&
+                  <div>
+                    User not found
+                  </div>
+              }
               </div>
             </div>
             <div className="col s3" className={styles["navbar"]}>
@@ -77,6 +87,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+        <a id="forkMe" className={styles['forkMe']} href="https://github.com/ebrugulec/timeline">Fork me on GitHub</a>
       </div>
     );
   }
