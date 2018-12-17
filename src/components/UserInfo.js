@@ -3,12 +3,14 @@ import styles from './styles.module.css'
 
 const UserInfo = ({user}) =>{
     return(
-        <div>
+        <div className={"row"}>
             {
                 user &&
-                <div>
+                <div className={"col s3"}>
                     <img className={styles['avatar']}  src={user['avatar_url']} />
-                    {user.login}
+                    <div>
+                        {user.login}
+                    </div>
                 </div>
             }
         </div>

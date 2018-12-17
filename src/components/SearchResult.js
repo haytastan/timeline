@@ -15,23 +15,23 @@ class SearcResult extends Component {
             case "WatchEvent":
                 return(
                     <span>
-                    starred <a href={GITHUB_URL + event.repo['name']}>{event.repo['name']}</a>
+                    starred <a target="_blank" href={GITHUB_URL + event.repo['name']}>{event.repo['name']}</a>
                     </span>
                 )
             case "CreateEvent":
                 return(
                     <span>
-                        created a repository <a href={GITHUB_URL + event.repo['name']}>{event.repo['name']}</a>
+                        created a repository <a target="_blank" href={GITHUB_URL + event.repo['name']}>{event.repo['name']}</a>
                     </span>
                 )
             case "ForkEvent":
                 return(
                     <span>
                         forked&nbsp;
-                        <a href={GITHUB_URL+event.payload.forkee['full_name']}>
+                        <a target="_blank" href={GITHUB_URL+event.payload.forkee['full_name']}>
                             {event.payload.forkee['full_name']}
                         </a> from&nbsp;&nbsp;
-                        <a href={GITHUB_URL + event.repo['name']}>
+                        <a target="_blank" href={GITHUB_URL + event.repo['name']}>
                             {event.repo['name']}
                         </a>
                     </span>
@@ -39,20 +39,20 @@ class SearcResult extends Component {
             case "PushEvent":
                 return(
                     <span>
-                        push event <a href={GITHUB_URL+event.repo['name']}>{event.repo['name']}</a>
+                        push event <a target="_blank" href={GITHUB_URL+event.repo['name']}>{event.repo['name']}</a>
                     </span>
                 )
             case "IssuesEvent":
             url = event.payload.issue['url'].replace('https://api.github.com/repos/', GITHUB_URL)
             return(
                     <span>
-                        issue activites <a href={url}>{event.repo['name']}</a>
+                        issue activites <a target="_blank" href={url}>{event.repo['name']}</a>
                     </span>
                 )
             case "PullRequestReviewCommentEvent":
                 return(
                     <span>
-                        pull request review comment <a href={GITHUB_URL+event.repo['name']}>
+                        pull request review comment <a target="_blank" href={GITHUB_URL+event.repo['name']}>
                             {event.repo['name']}
                         </a>
                     </span>
@@ -60,7 +60,7 @@ class SearcResult extends Component {
             case "PublicEvent":
                 return(
                     <span>
-                        made <a href={GITHUB_URL+event.repo['name']}>
+                        made <a target="_blank" href={GITHUB_URL+event.repo['name']}>
                             {event.repo['name']}
                         </a>
                         public
@@ -70,19 +70,19 @@ class SearcResult extends Component {
             url = event.payload.issue['url'].replace('https://api.github.com/repos/', GITHUB_URL)
             return(
                 <span>
-                    commeted an issue <a href={url}>{event.repo.name}</a>
+                    commeted an issue <a target="_blank" href={url}>{event.repo.name}</a>
                 </span>
             )
             case "MemberEvent":
                 return(
                     <span>
-                        member event <a href={GITHUB_URL + event.repo['name']}>{event.repo['name']}</a>
+                        member event <a target="_blank" href={GITHUB_URL + event.repo['name']}>{event.repo['name']}</a>
                     </span>
                 )
             case "PullRequestEvent":
                 return(
                     <span>
-                    pull request <a href={event.repo['url']}>{event.repo['name']}</a>
+                    pull request <a target="_blank" href={event.repo['url']}>{event.repo['name']}</a>
                     </span>
                 )
         }
@@ -96,13 +96,13 @@ class SearcResult extends Component {
         const events = this.props.events
         return (
             <div>
-            { events && events.map((event, i) => {
+            { events.length != 0 && events.map((event, i) => {
                 return(
                     <div key={i} className={styles["content-div"]}>
-                        <a className={styles["avatar-aligment"]} href={GITHUB_URL + event.actor['login']}>
+                        <a className={styles["avatar-aligment"]} target="_blank" href={GITHUB_URL + event.actor['login']}>
                             <img className={styles['event-avatar']}  src={event.actor['avatar_url']}/>
                         </a>
-                        <a href={GITHUB_URL + event.actor['login']}>{event.actor['login']}</a>&nbsp;
+                        <a href={GITHUB_URL + event.actor['login']} target="_blank">{event.actor['login']}</a>&nbsp;
                         {this.checkeventType(event)}
                     </div>
                 )

@@ -4,7 +4,7 @@ import axios from 'axios';
 import SearchResult from './SearchResult'
 import UserInfo from './UserInfo'
 import styles from './styles.module.css'
-
+import './App.css'
 
 const GITHUB_URL = "https://api.github.com/users/"
 class App extends React.Component {
@@ -54,15 +54,18 @@ class App extends React.Component {
       return (
         <div className="App">
           <nav>
-            <div className="nav-wrapper">
-              <a href="#" className="brand-logo">Github User Timeline</a>
+            <div className="nav-wrapper green darken-1">
+              <a href="#" className="brand-logo" style={{marginLeft: '20px'}}>Github User Timeline</a>
             </div>
           </nav>
+          <hr/>
           <div className="container">
             <div className="row">
+              <div className="col s3">
+                <UserInfo user = {user} />
+              </div>
               <div className="col s9">
                 <SearchBar handleSubmit={this.handleSubmit} />
-              <div className="row">
               {
                 events && !err && events.map((event, i) => {
                   return(
@@ -72,7 +75,7 @@ class App extends React.Component {
               }
               {
                 events &&
-                <button className="waves-effect waves-light btn red lighten-2" onClick={() => {this.handleLoadButton()}}><i className="material-icons right">cloud</i>Load...</button>
+                <button className="waves-effect waves-light btn orange accent-2" onClick={() => {this.handleLoadButton()}}><i className="material-icons right">cloud</i>Load...</button>
               }
               {
                 err &&
@@ -81,13 +84,9 @@ class App extends React.Component {
                   </div>
               }
               </div>
-            </div>
-            <div className="col s3" className={styles["navbar"]}>
-              <UserInfo user = {user} />
-            </div>
           </div>
         </div>
-        <a id="forkMe" className={styles['forkMe']} href="https://github.com/ebrugulec/timeline">Fork me on GitHub</a>
+        <a id="forkMe" className={styles['forkMe']} href="https://github.com/ebrugulec/timeline">View on GitHub</a>
       </div>
     );
   }
